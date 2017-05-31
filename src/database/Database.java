@@ -17,7 +17,7 @@ public class Database{
     public static void main(String[] args) {
         Methods met = new Methods();
         met.connect();
-        met.createTable(null);
+        met.createTable();
         int op = 0;
 
 /**

@@ -23,14 +23,24 @@ public class Methods{
     public static String db;
     public static String url = "jdbc:sqlite:" +db;
 
+    /**
+     * Constructor por defecto.
+     */
     public Methods() {
     }
     
+    /**
+     * Constructor que recibe una variable String para denominar a la base de datos.
+     * @param db 
+     */
     public Methods(String db){
         this.db = "base.db";
     }
     
-    
+    /**
+     * Conexión con la base de datos e información de la misma. Devuelve false si falla y true si conecta.
+     * @return 
+     */
     public boolean connect(){
 
         try {
@@ -46,7 +56,11 @@ public class Methods{
         return true;
     }
     
-    public void createTable(String name){
+    /**
+     * Crea la tabla alumnos dentro de la base de datos.
+     * @param name 
+     */
+    public void createTable(){
 //        String url = "jdbc:sqlite:" +db;
         String sql = "CREATE TABLE IF NOT EXISTS alumnos (\n"
                 + "	id integer PRIMARY KEY,\n"
@@ -63,6 +77,12 @@ public class Methods{
         }
     }
     
+    /**
+     * Inserta dentro de la tabla alumnos los elementos: id, nombre, apellidos y edad. 
+     * Devuelve el número 0 si no inserta nada y el número 1 cada vez que inserta un alumno.
+     * @param l
+     * @return 
+     */
     public int insert(Element l){
     String sql = "INSERT INTO Alumnos(id,nombre,apellidos,edad) VALUES(?,?,?,?)";
             
@@ -81,6 +101,12 @@ public class Methods{
             return 1;
     }
     
+    /**
+     * Borra elementos dentro de la tabla alumnos según el id introducido. 
+     * Devuelve el número 0 si no inserta nada y el número 1 cada vez que inserta un alumno.
+     * @param id
+     * @return 
+     */
     public int delete(String id) {
         String sql = "DELETE FROM alumnos WHERE id = " +id;
         
@@ -95,6 +121,12 @@ public class Methods{
         return 1;
     }
     
+    /**
+     * Modifica los valores de cualquier elemento introducido según el id.
+     * Devuelve el número 0 si no inserta nada y el número 1 cada vez que inserta un alumno.
+     * @param l
+     * @return 
+     */
     public int update(Element l){
         String sql = "UPDATE alumnos SET nombre='"+l.getNombre()+"', apellidos='"+l.getApellido()+"', edad="+l.getEdad()+" WHERE id = " +l.getId();
         
